@@ -1,6 +1,7 @@
 import pandas as pd
 from sklearn.model_selection import StratifiedKFold
 import os
+import config
 
 def create_folds(data, num_folds=5):
     """
@@ -37,7 +38,7 @@ def create_folds(data, num_folds=5):
 
 if __name__ == "__main__":
     # Read the training data from input folder
-    df = pd.read_csv("/Users/robertmarks/Desktop/kaggle/titanic/input/train.csv")
+    df = pd.read_csv(config.Training_File)
     
     # Create folds
     df_with_folds = create_folds(df)
@@ -46,5 +47,5 @@ if __name__ == "__main__":
     os.makedirs("input", exist_ok=True)
     
     # Save the new CSV with folds in the input folder
-    df_with_folds.to_csv("/Users/robertmarks/Desktop/kaggle/titanic/input/train.csv", index=False)
+    df_with_folds.to_csv(config.Training_File, index=False)
     print(f"Created 5 folds and saved to input/train_folds.csv") 
